@@ -1,0 +1,4 @@
+id,targetDistance,breathingRate,heartRate,physiologicalState,timestamp,target
+00513B9D7E80,2.4,15.0,62.0,2,2024-09-02 10:00:50.156498,1
+00513B9D7E80,2.4,15.0,57.0,2,2024-09-02 10:00:51.152265,1
+00513B9D7E80,2.5,12.0,57.0,2,2024-09-02 10:00:52.152781,1

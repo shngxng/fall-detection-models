@@ -1,0 +1,3 @@
+Temperature,CO2,Humidity,Noise,Pressure,AbsolutePressure,health_idx,min_temp,max_temp,date_max_temp,date_min_temp,timestamp
+20.8,652,34,51,1036.6,1031.5,0,2024-09-03 01:34:43
+20.8,693,33,50,1036.5,1031.4,0,2024-09-03 01:44:48

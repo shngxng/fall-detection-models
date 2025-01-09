@@ -1,0 +1,10 @@
+2024-05-24 18:49:46,352 ERROR load_configuration(63) Configuration file not found: app.conf
+2024-05-24 18:53:32,116 INFO main(96) listener for sensors setup
+2024-05-24 18:58:24,683 INFO main(96) listener for sensors setup
+2024-05-24 18:58:29,364 INFO connection_made(33) Device connected 192.168.0.106:49157
+2024-06-26 14:01:57,058 INFO main(101) listener for sensors setup
+2024-06-26 14:02:07,417 INFO connection_made(33) Device connected 192.168.0.103:49156
+2024-06-26 14:10:15,982 INFO main(66) listener for sensors setup
+2024-06-26 14:10:20,800 INFO connection_made(33) Device connected 192.168.0.103:49158
+2024-06-26 14:14:54,564 INFO main(66) listener for sensors setup
+2024-06-26 14:15:01,350 INFO connection_made(33) Device connected 192.168.0.103:49166
