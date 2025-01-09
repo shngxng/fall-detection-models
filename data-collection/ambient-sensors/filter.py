@@ -95,16 +95,13 @@ activities = {
 # }
 
 
-# Function to get the latest starting timestamp
 def get_latest_start_time(motion_df, uwb_df):
     motion_start_time = pd.to_datetime(motion_df["timestamp"]).min()
     uwb_start_time = pd.to_datetime(uwb_df["timestamp"]).min()
     return max(motion_start_time, uwb_start_time)
 
 
-# Create directories for activities if they don't exist
 for category, activities_list in activities.items():
-    
     # Load CSV files for each sensor
     PID = "02"
     if category == "ADLs":
@@ -116,33 +113,28 @@ for category, activities_list in activities.items():
         netatmo_file_path = os.path.join(data_directory, category, f"netatmo-P{PID}-1.csv")
         uwb_file_path = os.path.join(data_directory, category, f"uwb-P{PID}-1.csv")
     
-    # Load CSV files for each sensor
     motion_csv = pd.read_csv(motion_file_path)
     # netatmo_csv = pd.read_csv(netatmo_file_path)
     uwb_csv = pd.read_csv(uwb_file_path)
     
-    # Get the latest start time from either motion or UWB sensor file
+    # get the latest start time from either motion or UWB sensor file
     latest_start_time = get_latest_start_time(motion_csv, uwb_csv)
     
     
     for activity in activities_list:
-        # Define the output path for the filtered data
         activity_dir = os.path.join(output_directory, category, activity["type"])
         os.makedirs(activity_dir, exist_ok=True)
         
         activity_start_time = latest_start_time 
-        
-        # Copy Netatmo file to each activity directory
         netatmo_output_path = os.path.join(activity_dir, "netatmo.csv")
         shutil.copy(netatmo_file_path, netatmo_output_path)
         
     for activity in activities_list:
-        # Define the output path for the filtered data
         activity_dir = os.path.join(output_directory, category, activity["type"])
         os.makedirs(activity_dir, exist_ok=True)
         
         # Calculate activity start and end times
-        activity_start_time = latest_start_time  # Use the synchronized start time
+        activity_start_time = latest_start_time 
         activity_duration = timedelta(minutes=int(activity["duration"].split(":")[0]), 
                                     seconds=float(activity["duration"].split(":")[1]))
         print(f"category: {category}; activity = {activity["type"]}; activity_duration = {activity_duration}")
@@ -155,11 +147,9 @@ for category, activities_list in activities.items():
         uwb_filtered = uwb_csv[(pd.to_datetime(uwb_csv["timestamp"]) >= start_time) & 
                             (pd.to_datetime(uwb_csv["timestamp"]) <= end_time)]
         
-        # Define file paths for saving filtered data
         motion_output_path = os.path.join(activity_dir, "motion_sensor_filtered.csv")
         uwb_output_path = os.path.join(activity_dir, "uwb_filtered.csv")
-        
-        # Save the filtered data to new CSV files
+    
         motion_filtered.to_csv(motion_output_path, index=False)
         uwb_filtered.to_csv(uwb_output_path, index=False)
         
